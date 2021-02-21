@@ -4,7 +4,7 @@
 ### `npm start`
 ### `npm run dev` to run the project in develeopment mode  
 
-## Environmental Variables  
+## Environment Variables  
 `DB_NAME` -> Database name    
 `DB_USER` -> User name for database acess  
 `DB_PASSWORD` -> Password for database acess  
