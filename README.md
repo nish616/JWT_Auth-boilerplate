@@ -17,7 +17,7 @@
 
 ## Routes
 ### `/register` to register a new user
-### `/login` to login and acess token
+### `/login` to login and get acess token
 
 ### **Important!!**  
 Add `key`: auth-token, `value`: Bearer < token here >  
