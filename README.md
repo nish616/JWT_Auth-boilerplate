@@ -16,7 +16,7 @@
 
 
 ## Routes
- **`/register`** to register a new user
+ **`/register`** to register a new user  
 **`/login`** to login and get access token
 
 ### **Important!!**  
