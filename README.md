@@ -6,8 +6,8 @@
 
 ## Environment Variables  
 `DB_NAME` -> Database name    
-`DB_USER` -> User name for database acess  
-`DB_PASSWORD` -> Password for database acess  
+`DB_USER` -> User name for database access  
+`DB_PASSWORD` -> Password for database access  
 `USER_ID`, `ADMIN_ID` -> Default roleId to diffrentiate user and admin (For example, "000" for admin and "111" for user)   
 
 ## Database  
