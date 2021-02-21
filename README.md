@@ -1,4 +1,4 @@
-# JWT_Auth-boilerplate
+# JWT-Auth boilerplate
 
 ## Available Scripts  
 ### `npm start`
