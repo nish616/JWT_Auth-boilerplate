@@ -3,7 +3,6 @@ const jwt =  require("jsonwebtoken");
 
 //require environment variables
 const {secret} = require("../Config/jwt.token");
-const {userId} = require("../Config/db.config");
 
 //Import user model
 const User =  require("../models/user");
@@ -13,9 +12,12 @@ const User =  require("../models/user");
 
         const {userName, password} = req.body;
 
+        if(!userName || ! password)
+        return res.status(400).send({success : "false",error:"fields are empty"});
+        
         //check if user already exists
         const userExist = await User.findOne({userName : userName});
-        if(userExist) return res.status(400).send("User already registered");
+        if(userExist) return res.status(400).send({success : "false", message:"User already registered"});
 
         //Hashing password
         const salt = await bcrypt.genSalt(10);
@@ -24,18 +26,24 @@ const User =  require("../models/user");
 
         const newUser = {
             userName : userName,
-            password : hashedPassword,
-            roleId :  userId
+            password : hashedPassword
         };
 
         const user  = new User(newUser);
         await user.save();
 
-        res.status(201).json({"message" : "User registered!"});
+        const payload = {
+            id : user._id,
+            userName : user.userNname   // Add more data to payload as per ur logic
+        };
+        const accessToken = jwt.sign(payload, secret, {expiresIn: '120m'});
+        
+        res.status(200).send({success : "true","token" : accessToken});
     
     }catch(err){
         if(err){
             console.log(err);
+            res.status(500).send({success : "false", error : err});
         }
     }
     
@@ -45,18 +53,26 @@ const User =  require("../models/user");
  async function login (req, res){
     try{
         const {userName, password} = req.body;
+
+        if(!userName || ! password)
+        return res.status(400).send({success : "false",error:"fields are empty"});
+
         //check if user  exists
         const user = await User.findOne({userName : userName});
-        if(user == null) return res.status(400).send("Invalid user name/password");
+        if(!user) res.status(400).send({success : "false", message:"Invalid user name/password"});
 
         //password check
         const validPass = await bcrypt.compare(password, user.password);
-        if(!validPass) return res.status(400).send("Invalid user name/password");
+        if(!validPass)  return res.status(400).send({success : "false",mesg:"Invalid user name/password"});
 
-        //create and assign token with role_id
-        const accessToken = jwt.sign({token_id : user._id +' '+user.roleId}, secret, {expiresIn: '120m'});
         
-        res.status(200).json({"auth-token" : accessToken});
+        const payload = {
+            id : user._id,
+            userName : user.userNname  // Add more data to payload as per ur logic
+        };
+        const accessToken = jwt.sign(payload, secret, {expiresIn: '120m'});
+        
+        res.status(200).send({success : "true","token" : accessToken});
 
     }catch(err){
         console.log(err);
