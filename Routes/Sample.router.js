@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 //import authorize middleare
-const authorize = require("../Middlewares/authorize");
+const authorize = require("../middlewares/authorize");
 
 router.get("/sample"); // publice route
 

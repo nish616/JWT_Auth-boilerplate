@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 //require environment variables
-const {secret} = require("../Config/jwt.token");
+const {secret} = require("../config/jwt.token");
 
 function authorize(req, res, next){
     const authHeader = req.headers['authorization'];

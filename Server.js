@@ -3,11 +3,11 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 
 //require Db connection
-require("./DB/db.Connection");
+require("./db/db.Connection");
 
 //import routes
-const authRoute = require("./Routes/Authentication.router");
-const sampleRoute = require("./Routes/Sample.router");
+const authRoute = require("./routes/Authentication.router");
+const sampleRoute = require("./routes/Sample.router");
 
 const app = express();
 

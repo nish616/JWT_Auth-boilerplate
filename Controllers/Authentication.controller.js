@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt =  require("jsonwebtoken");
 
 //require environment variables
-const {secret} = require("../Config/jwt.token");
+const {secret} = require("../config/jwt.token");
 
 //Import user model
 const User =  require("../models/user");

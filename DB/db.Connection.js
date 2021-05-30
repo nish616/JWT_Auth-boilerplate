@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 //require environment variables
-const dbVariables = require("../Config/db.config");
+const dbVariables = require("../config/db.config");
 
 module.exports = mongoose.connect("mongodb+srv://"+dbVariables.dbUser+":"+dbVariables.dbPassword+"@cluster0.ll1mc.mongodb.net/"+dbVariables.dbName+"?retryWrites=true&w=majority",
 { useNewUrlParser: true,

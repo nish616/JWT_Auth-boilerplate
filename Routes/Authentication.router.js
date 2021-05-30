@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 //import controllers
-const Authenticate  = require("../Controllers/Authentication.controller"); 
+const Authenticate  = require("../controllers/Authentication.controller"); 
 
 router.post("/register", Authenticate.register);
 
